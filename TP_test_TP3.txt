@@ -1,0 +1,193 @@
+
+--------------------------- TEST PARTIEL ----------------------------------------------------
+(chainage-avant-profondeur '(GENRE thriller) '((CARACTERISTIQUE-PERSO tuer-qqn) (MONDE reel) (PERSO-PRINC humain)) nil);; TROUVÉ
+;; Chemin parcouru : NIL 
+;; Base de faits : ((CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+;;                  (PERSO-PRINC HUMAIN))
+;; Règles candidates: (R21 R23)
+
+;; Chemin parcouru : (R21) 
+;; Base de faits : ((THEME SES-DEFAUTS) (CARACTERISTIQUE-PERSO TUER-QQN)
+;;                  (MONDE REEL) (PERSO-PRINC HUMAIN))
+;; Règles candidates: (R23)
+
+;; Chemin parcouru : (R21 R23) 
+;; Base de faits : ((PERSO-PRINC CRIMINEL) (THEME SES-DEFAUTS)
+;;                  (CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+;;                  (PERSO-PRINC HUMAIN))
+;; Règles candidates: (R12)
+
+;; *************** (GENRE THRILLER) VÉRIFIÉ ! ***************
+;; Des règles utilisées : (R21 R23 R12)
+;;  R21 : (R21 ((PERSO-PRINC HUMAIN) (CARACTERISTIQUE-PERSO TUER-QQN))
+;;         (THEME SES-DEFAUTS)) 
+;;  R23 : (R23 ((CARACTERISTIQUE-PERSO TUER-QQN)) (PERSO-PRINC CRIMINEL)) 
+;;  R12 : (R12 ((THEME SES-DEFAUTS) (PERSO-PRINC CRIMINEL)) (GENRE THRILLER)) 
+
+;; Chemin parcouru : (R23) 
+;; Base de faits : ((PERSO-PRINC CRIMINEL) (THEME SES-DEFAUTS)
+;;                  (CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+;;                  (PERSO-PRINC HUMAIN))
+;; Règles candidates: (R12 R21)
+
+;; *************** (GENRE THRILLER) VÉRIFIÉ ! ***************
+;; Des règles utilisées : (R23 R12)
+;;  R23 : (R23 ((CARACTERISTIQUE-PERSO TUER-QQN)) (PERSO-PRINC CRIMINEL)) 
+;;  R12 : (R12 ((THEME SES-DEFAUTS) (PERSO-PRINC CRIMINEL)) (GENRE THRILLER)) 
+
+;; *************** (GENRE THRILLER) VÉRIFIÉ ! ***************
+;; Des règles utilisées : (R23 R21)
+;;  R23 : (R23 ((CARACTERISTIQUE-PERSO TUER-QQN)) (PERSO-PRINC CRIMINEL)) 
+;;  R21 : (R21 ((PERSO-PRINC HUMAIN) (CARACTERISTIQUE-PERSO TUER-QQN))
+;;         (THEME SES-DEFAUTS)) 
+(chainage-avant-profondeur '(GENRE thriller) '((MONDE reel) (PERSO-PRINC humain)) nil) ;; NIL
+;; Chemin parcouru : NIL 
+;; Base de faits : ((MONDE REEL) (PERSO-PRINC HUMAIN))
+;; _________ (GENRE THRILLER) N'EST PAS PROUVÉ _________
+
+;; ------------------------FIN FONCTIONS DE MOTEUR D'INFÉRENCE------------------------;;
+
+(chainage-avant-largeur '(GENRE thriller) '((CARACTERISTIQUE-PERSO tuer-qqn) (MONDE reel) (PERSO-PRINC humain)));; TROUVÉ
+
+;; Chemin parcouru : NIL 
+;; Base de faits : ((CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+;;                  (PERSO-PRINC HUMAIN))
+;; Règles candidates: (R23 R21)
+
+;; Chemin parcouru : (R23) 
+;; Base de faits : ((PERSO-PRINC CRIMINEL) (CARACTERISTIQUE-PERSO TUER-QQN)
+;;                  (MONDE REEL) (PERSO-PRINC HUMAIN))
+;; Règles candidates: (R21)
+
+;; Chemin parcouru : (R21 R23) 
+;; Base de faits : ((THEME SES-DEFAUTS) (PERSO-PRINC CRIMINEL)
+;;                  (CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+;;                  (PERSO-PRINC HUMAIN))
+;; Règles candidates: (R12)
+
+;; *************** (GENRE THRILLER) VÉRIFIÉ ! ***************
+;; Des règles utilisées : (R23 R21 R12)
+;;  R23 : (R23 ((CARACTERISTIQUE-PERSO TUER-QQN)) (PERSO-PRINC CRIMINEL)) 
+;;  R21 : (R21 ((PERSO-PRINC HUMAIN) (CARACTERISTIQUE-PERSO TUER-QQN))
+;;         (THEME SES-DEFAUTS)) 
+;;  R12 : (R12 ((THEME SES-DEFAUTS) (PERSO-PRINC CRIMINEL)) (GENRE THRILLER)) 
+
+(chainage-avant-largeur '(GENRE thriller) '((MONDE reel) (PERSO-PRINC humain))) ;; NIL
+;; Chemin parcouru : NIL 
+;; Base de faits : ((MONDE REEL) (PERSO-PRINC HUMAIN))
+;; Règles candidates: NIL
+
+;; _________ (GENRE THRILLER) N'EST PAS PROUVÉ _________
+
+
+(regle-favorable 'r13 '((THEME SES-DEFAUTS) (PERSO-PRINC PERSONNE-ORDINAIRE))) ;;OK
+(regle-favorable 'r14 '((THEME SES-DEFAUTS) (PERSO-PRINC PERSONNE-ORDINAIRE)))  ;;NIL
+
+(regles-applicables '((TECHNOLOGIE existante) (MONDE reel) (PERSO-PRINC humain)) nil)
+;;((R2)
+(regles-applicables '((PERSO-PRINC humain)) nil)  ;;NIL
+(regles-applicables '((CARACTERISTIQUE-PERSO tuer-qqn) (MONDE reel) (PERSO-PRINC humain)) nil) ;; (R21 R23)
+
+(premisses 'r13)    ;;((THEME SES-DEFAUTS) (PERSO-PRINC PERSONNE-ORDINAIRE))
+
+--------------------------- TEST GLOBAL ----------------------------------------------------
+(checkFilm)
+
+//------------------------------------------------------------------------//
+
+//----------------------------FILM CLASSIFICATION-------------------------//
+
+//------------------------------------------------------------------------//
+
+Des caracteristiques au choix : 
+
+0. TECHNOLOGIE : INEXISTANTE, EXISTANTE 
+1. MONDE : IMAGINAIRE, REEL 
+2. THEME : ESPACE, EVENEMENT-AYANT-EU-LIEU, NATURE, VIE, SCIENCE, EVENEMENT, CRIME, SES-DEFAUTS, SAUVER-DES-GENS 
+3. DECOR : ARTIFICIEL, FORET, OCEAN 
+4. CARACTERISTIQUE-PERSO : REEL, CASSE-DES-CHOSES, TUER-QQN, POUVOIRS, COMPORTEMENT-HUMAIN 
+5. EPOQUE : PASSE, FUTURE 
+6. PERSO-PRINC : HUMAIN, CRIMINEL, ANIMAL, ROBOT, INHUMAIN 
+7. BUT : DIVERTIR, INSTRUIRE 
+
+ Veuillez entrer les caracteristiques (ex : (MONDE reel)) : ((CARACTERISTIQUE-PERSO tuer-qqn) (MONDE reel) (PERSO-PRINC humain))
+
+ Base de faits établie : ((CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+                          (PERSO-PRINC HUMAIN)) 
+
+ Des genres de film : 
+ - SCIENCE-FICTION 
+ - BIOGRAPHIE 
+ - DOCUMENTAIRE 
+ - SUPER-HEROS 
+ - COMEDIE 
+ - THRILLER 
+
+ Veuillez entrer le genre de film à vérifier (ex : (GENRE documentaire)) : (GENRE thriller) 
+
+ But défini : (GENRE THRILLER) 
+
+ Veuillez entrer le chainage à traiter : 
+ 0. Chainage avant en profondeur 
+ 1. Chainage avant en largeur 
+ 2. Les deux 
+0
+
+
+//------------ VÉRIFICATION EN CHAINAGE EN PROFONDEUR ------------//
+
+
+Chemin parcouru : NIL 
+Base de faits : ((CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+                 (PERSO-PRINC HUMAIN))
+Règles candidates: (R21 R24)
+
+Chemin parcouru : (R21) 
+Base de faits : ((THEME SES-DEFAUTS) (CARACTERISTIQUE-PERSO TUER-QQN)
+                 (MONDE REEL) (PERSO-PRINC HUMAIN))
+Règles candidates: (R24)
+
+Chemin parcouru : (R21 R24) 
+Base de faits : ((PERSO-PRINC CRIMINEL) (THEME SES-DEFAUTS)
+                 (CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+                 (PERSO-PRINC HUMAIN))
+Règles candidates: (R12)
+
+*************** (GENRE THRILLER) VÉRIFIÉ ! ***************
+Des règles utilisées : (R21 R24 R12)
+ R21 : (R21 ((PERSO-PRINC HUMAIN) (CARACTERISTIQUE-PERSO TUER-QQN))
+        (THEME SES-DEFAUTS)) 
+ R24 : (R24 ((CARACTERISTIQUE-PERSO TUER-QQN)) (PERSO-PRINC CRIMINEL)) 
+ R12 : (R12 ((THEME SES-DEFAUTS) (PERSO-PRINC CRIMINEL)) (GENRE THRILLER)) 
+
+Chemin parcouru : (R24) 
+Base de faits : ((PERSO-PRINC CRIMINEL) (THEME SES-DEFAUTS)
+                 (CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+                 (PERSO-PRINC HUMAIN))
+Règles candidates: (R12 R21)
+
+*************** (GENRE THRILLER) VÉRIFIÉ ! ***************
+Des règles utilisées : (R24 R12)
+ R24 : (R24 ((CARACTERISTIQUE-PERSO TUER-QQN)) (PERSO-PRINC CRIMINEL)) 
+ R12 : (R12 ((THEME SES-DEFAUTS) (PERSO-PRINC CRIMINEL)) (GENRE THRILLER)) 
+
+*************** (GENRE THRILLER) VÉRIFIÉ ! ***************
+Des règles utilisées : (R24 R21)
+ R24 : (R24 ((CARACTERISTIQUE-PERSO TUER-QQN)) (PERSO-PRINC CRIMINEL)) 
+ R21 : (R21 ((PERSO-PRINC HUMAIN) (CARACTERISTIQUE-PERSO TUER-QQN))
+        (THEME SES-DEFAUTS)) 
+
+
+//------------ FIN DE VÉRIFICATIOIN ------------//
+
+Des tests faits :
+1.
+bdf : ((CARACTERISTIQUE-PERSO TUER-QQN) (MONDE REEL)
+                          (PERSO-PRINC HUMAIN)) 
+but : (GENRE THRILLER) 
+Résultat : (R21 R24 R12) (R12 R21) (R24 R12)
+
+2.
+bdf : ((PERSO-PRINC HUMAIN) (THEME CRIME) (TECHNOLOGIE INEXISTANTE)) 
+but :(GENRE SCIENCE-FICTION) 
+Résultat : Nil
